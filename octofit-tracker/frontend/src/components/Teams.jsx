@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { buildApiUrl, normalizeApiResponse } from './api';
+import { getApiBaseUrl, normalizeApiResponse } from './api';
 
 function Teams() {
   const [teams, setTeams] = useState([]);
@@ -10,7 +10,8 @@ function Teams() {
 
     const loadTeams = async () => {
       try {
-        const response = await fetch(buildApiUrl('teams'));
+        const apiUrl = '/api/teams/';
+        const response = await fetch(`${getApiBaseUrl()}${apiUrl}`);
         if (!response.ok) {
           throw new Error(`Unable to load teams (${response.status})`);
         }

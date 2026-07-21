@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { buildApiUrl, normalizeApiResponse } from './api';
+import { getApiBaseUrl, normalizeApiResponse } from './api';
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -10,7 +10,8 @@ function Users() {
 
     const loadUsers = async () => {
       try {
-        const response = await fetch(buildApiUrl('users'));
+        const apiUrl = '/api/users/';
+        const response = await fetch(`${getApiBaseUrl()}${apiUrl}`);
         if (!response.ok) {
           throw new Error(`Unable to load users (${response.status})`);
         }

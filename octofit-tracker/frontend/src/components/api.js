@@ -1,4 +1,4 @@
-const getBaseUrl = () => {
+export const getApiBaseUrl = () => {
   const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim();
 
   if (codespaceName) {
@@ -8,7 +8,7 @@ const getBaseUrl = () => {
   return 'http://localhost:8000';
 };
 
-export const buildApiUrl = (resource) => `${getBaseUrl()}/api/${resource}/`;
+export const buildApiUrl = (resource) => `${getApiBaseUrl()}/api/${resource}/`;
 
 export const normalizeApiResponse = (payload) => {
   if (Array.isArray(payload)) {
